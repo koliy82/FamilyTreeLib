@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "familytreelib"
-version = "0.0.3"
+version = "0.0.7"
 description = ""
 authors = ["Koliy82 <sokol070804@mail.ru>"]
 license = "LICENSE"
@@ -11,10 +11,15 @@ python = "^3.12"
 pymongo = "^4.8.0"
 pydantic = "^2.8.2"
 treelib = "^1.7.0"
+graphviz = "^0.20.3"
+igraph = "^0.11.6"
+cairocffi = "^1.7.1"
 
 [tool.poetry.group.test.dependencies]
 mongomock = "^4.1.2"
 setuptools = "^73.0.1"
+fastapi = "^0.112.1"
+uvicorn = "^0.30.6"
 
 [build-system]
 requires = ["poetry-core"]

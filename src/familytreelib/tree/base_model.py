@@ -20,7 +20,7 @@ class BaseFamilyTree(ABC):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    def process_data(self, coll: Collection, max_duplicate=0, is_repeatable_map=None):
+    def process_data(self, coll: Collection, max_duplicate, is_repeatable_map=None):
         if is_repeatable_map is None:
             is_repeatable_map = {}
         pipeline = [
@@ -62,14 +62,14 @@ class BaseFamilyTree(ABC):
                 if second_data:
                     self.second = User.from_mongo(second_data)
             if self.brak and self.brak.baby_user_id:
-                if self.user_id not in is_repeatable_map:
+                if self.brak.baby_user_id not in is_repeatable_map:
                     is_duplicate = False
                     is_repeatable_map[self.brak.baby_user_id] = 0
                 else:
-                    duplicate_count = is_repeatable_map[self.user_id]
+                    duplicate_count = is_repeatable_map[self.brak.baby_user_id]
                     is_duplicate = duplicate_count >= max_duplicate
                     is_repeatable_map[self.brak.baby_user_id] = duplicate_count+1
-                    print(f"duplicate: {duplicate_count}/{max_duplicate}")
+                    print(f"duplicate [{self.brak.baby_user_id}]: {duplicate_count}/{max_duplicate} = {is_duplicate}")
                 if not is_duplicate:
                     self.next = self.__class__(self.brak.baby_user_id)
                     self.next.process_data(coll, max_duplicate, is_repeatable_map)
