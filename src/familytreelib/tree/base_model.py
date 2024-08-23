@@ -74,19 +74,29 @@ class BaseFamilyTree(ABC):
                     self.next = self.__class__(self.brak.baby_user_id)
                     self.next.process_data(coll, max_duplicate, is_repeatable_map)
 
-
-    def get_data(self) -> Tuple[Tuple[str, int], Tuple[str, int]]:
-        unknown = getattr(self, "unknown_user", '?')
+    def root_data(self, unknown_string: str) -> Tuple[str, int]:
         if self.user_id == self.brak.first_user_id:
             if self.first:
-                return (f"{self.first.first_name} {self.first.last_name}", self.brak.first_user_id), (f"{self.second.first_name} {self.second.last_name}", self.brak.second_user_id)
+                return f"{self.first.first_name} {self.first.last_name}", self.brak.first_user_id
             else:
-                return (unknown, self.brak.first_user_id), (unknown, self.brak.second_user_id)
+                return unknown_string, self.brak.first_user_id
         else:
             if self.second:
-                return (f"{self.second.first_name} {self.second.last_name}", self.brak.second_user_id), (f"{self.first.first_name} {self.first.last_name}", self.brak.first_user_id)
+                return f"{self.second.first_name} {self.second.last_name}", self.brak.second_user_id
             else:
-                return (unknown, self.brak.second_user_id), (unknown, self.brak.first_user_id)
+                return unknown_string, self.brak.second_user_id
+
+    def partner_data(self, unknown_string) -> Tuple[str, int]:
+        if self.user_id != self.brak.first_user_id:
+            if self.first:
+                return f"{self.first.first_name} {self.first.last_name}", self.brak.first_user_id
+            else:
+                return unknown_string, self.brak.first_user_id
+        else:
+            if self.second:
+                return f"{self.second.first_name} {self.second.last_name}", self.brak.second_user_id
+            else:
+                return unknown_string, self.brak.second_user_id
 
     @abstractmethod
     def empty_node(self):
@@ -118,7 +128,8 @@ class BaseFamilyTree(ABC):
         if self.brak is None:
             self.empty_node()
             return
-        (root_name, _), partner_data = self.get_data()
+        root_name, _ = self.root_data(getattr(self, "unknown", "?"))
+        partner_data = self.partner_data(getattr(self, "unknown", "?"))
         root_prefix = getattr(self, "root_prefix", '')
         root_suffix = getattr(self, "root_suffix", '')
         return self.add_pair(self, (root_name, None), partner_data, root_prefix, root_suffix, root_prefix, root_suffix)
@@ -133,7 +144,8 @@ class BaseFamilyTree(ABC):
         """
         if tree is None or tree.brak is None:
            return
-        (first_name, _), partner_data = tree.get_data()
+        first_name, _  = tree.root_data(getattr(self, "unknown", "?"))
+        partner_data = tree.partner_data(getattr(self, "unknown", "?"))
         root_prefix = getattr(self, "kid_prefix", '')
         root_suffix = getattr(self, "kid_suffix", '')
         partner_prefix = getattr(self, "partner_prefix", '')

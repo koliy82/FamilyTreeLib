@@ -9,10 +9,10 @@ def mongomock_client():
         dict(id=1, first_name="test", last_name="1", username="test1", language_code="ru", is_admin=False),
         dict(id=2, first_name="test", last_name="2", username="test2", language_code="ru", is_admin=False),
         dict(id=3, first_name="test", last_name="3", username="test3", language_code="ru", is_admin=False),
-        dict(id=4, first_name="test", last_name="4", username="test4", language_code="ru", is_admin=False),
+        # dict(id=4, first_name="test", last_name="4", username="test4", language_code="ru", is_admin=False), # simulate missing user
         dict(id=5, first_name="test", last_name="5", username="test5", language_code="ru", is_admin=False),
         dict(id=6, first_name="test", last_name="6", username="test6", language_code="ru", is_admin=False),
-        dict(id=7, first_name="test", last_name="7", username="test7", language_code="ru", is_admin=False),
+        # dict(id=7, first_name="test", last_name="7", username="test7", language_code="ru", is_admin=False), # simulate missing user
         dict(id=8, first_name="test", last_name="8", username="test8", language_code="ru", is_admin=False),
         dict(id=9, first_name="test", last_name="9", username="test9", language_code="ru", is_admin=False),
         dict(id=10, first_name="test", last_name="10", username="test10", language_code="ru", is_admin=False),
