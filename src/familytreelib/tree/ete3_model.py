@@ -4,7 +4,7 @@ import ete3
 from ete3 import Tree
 from ete3.treeview import faces
 
-from familytreelib import TempFile
+from familytreelib.utils.temp_file import TempFile
 from familytreelib.tree.base_model import BaseFamilyTree, T
 
 
