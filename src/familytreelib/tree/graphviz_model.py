@@ -8,11 +8,20 @@ from familytreelib.tree.base_model import BaseFamilyTree, T
 class GraphvizLib(BaseFamilyTree):
 
     def __new__(cls, *args, **kwargs):
-        graph = Digraph(comment="Family Tree",
-                    node_attr={'color': 'lightblue2', 'style': 'filled', 'fontname':"Roboto, Noto Color Emoji"}
-                )
-        graph.attr(bgcolor='purple:pink', label='aboba', fontcolor='white')
-        cls.graph = graph
+        cls.graph = Digraph(
+            node_attr={
+                'color': 'lightblue2',
+                'style': 'filled',
+                'fontname':"Roboto, Noto Color Emoji",
+            },
+            graph_attr={
+                'bgcolor': 'purple:pink',
+                'label': 'aboba',
+                'fontcolor': 'white',
+                'charset': "utf-8",
+            }
+        )
+        print(cls.graph.source)
         return super().__new__(cls)
 
     def empty_node(self):

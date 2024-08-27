@@ -7,12 +7,14 @@ def mongomock_client():
     users = client.db.users
     user_data = [
         dict(id=1, first_name="test", last_name="1", username="test1", language_code="ru", is_admin=False),
-        dict(id=2, first_name="test", last_name="2", username="test2", language_code="ru", is_admin=False),
-        dict(id=3, first_name="test", last_name="3", username="test3", language_code="ru", is_admin=False),
-        # dict(id=4, first_name="test", last_name="4", username="test4", language_code="ru", is_admin=False), # simulate missing user
-        dict(id=5, first_name="test", last_name="5", username="test5", language_code="ru", is_admin=False),
-        dict(id=6, first_name="test", last_name="6", username="test6", language_code="ru", is_admin=False),
-        # dict(id=7, first_name="test", last_name="7", username="test7", language_code="ru", is_admin=False), # simulate missing user
+        dict(id=2, first_name="test", last_name="𝚖𝚘𝚛𝚊ᵃʳ", username="test2", language_code="ru", is_admin=False),
+        dict(id=3, first_name="test", last_name="3🌱", username="test3", language_code="ru", is_admin=False),
+        # simulate missing user
+        # dict(id=4, first_name="test", last_name="4", username="test4", language_code="ru", is_admin=False),
+        dict(id=5, first_name="test", last_name="5👈", username="test5", language_code="ru", is_admin=False),
+        dict(id=6, first_name="test", last_name="6🇺🇲", username="test6", language_code="ru", is_admin=False),
+        # simulate missing user
+        # dict(id=7, first_name="test", last_name="7", username="test7", language_code="ru", is_admin=False),
         dict(id=8, first_name="test", last_name="8", username="test8", language_code="ru", is_admin=False),
         dict(id=9, first_name="test", last_name="9", username="test9", language_code="ru", is_admin=False),
         dict(id=10, first_name="test", last_name="10", username="test10", language_code="ru", is_admin=False),
@@ -24,6 +26,7 @@ def mongomock_client():
         dict(first_user_id=1, second_user_id=2, baby_user_id=3, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
         dict(first_user_id=3, second_user_id=4, baby_user_id=5, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
         dict(first_user_id=5, second_user_id=6, baby_user_id=7, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        # simulate infinite loop
         dict(first_user_id=7, second_user_id=8, baby_user_id=5, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
         dict(first_user_id=9, second_user_id=10, baby_user_id=11, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
     ]

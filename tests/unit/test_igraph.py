@@ -10,13 +10,13 @@ class IgraphLibTest(unittest.TestCase):
     def setUpClass(cls):
         cls.client = mongomock_client()
 
-    def test_graphviz_empty_node(self):
+    def test_igraph_empty_node(self):
         tree = IgraphLib(0)
         tree.build_tree(self.client.db.braks)
         image_stream = tree.render()
         self.assertIsNotNone(image_stream.read())
 
-    def test_graphviz_build(self):
+    def test_igraph_build(self):
         tree = IgraphLib(1)
         tree.build_tree(self.client.db.braks)
         image_stream = tree.render()
