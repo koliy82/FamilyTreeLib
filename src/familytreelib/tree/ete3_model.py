@@ -26,7 +26,7 @@ class Ete3Lib(BaseFamilyTree):
         else:
             root_node = getattr(self, str(root_id)).add_child(name=f"👼 {root_name}")
         _ = root_node.add_child(name=f"{partner_prefix}{partner_name}{partner_suffix}")
-        root_node.add_face(ete3.AttrFace("name", f"{root_name}"), column=0, position="branch-top")
+        root_node.add_face(ete3.AttrFace("name"), column=0, position="branch-top")
         setattr(self, str(tree.user_id), root_node)
 
     def render(self):

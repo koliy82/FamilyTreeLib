@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "familytreelib"
-version = "0.0.7"
+version = "0.0.10"
 description = ""
 authors = ["Koliy82 <sokol070804@mail.ru>"]
 license = "LICENSE"
@@ -13,8 +13,8 @@ pydantic = "^2.8.2"
 treelib = "^1.7.0"
 graphviz = "^0.20.3"
 igraph = "^0.11.6"
-#cairocffi = "^1.7.1"
-pycairo = "^1.26.1"
+cairocffi = "^1.7.1"
+#pycairo = "^1.26.1"
 ete3 = "^3.1.3" # don't work with python 3.12+ (required 3.11.9 or down)
 numpy = "2.0.1"
 # poetry run pip install pyqt5==5.15.11
