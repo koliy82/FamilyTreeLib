@@ -22,7 +22,7 @@ class BaseFamilyTree(ABC):
 
     def process_data(self, coll: Collection, max_duplicate, is_repeatable_map=None):
         if is_repeatable_map is None:
-            is_repeatable_map = {}
+            is_repeatable_map = { self.user_id: 0 }
         pipeline = [
             {
                 '$match': {

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "familytreelib"
-version = "0.0.10"
+version = "0.0.11"
 description = ""
 authors = ["Koliy82 <sokol070804@mail.ru>"]
 license = "LICENSE"
@@ -26,6 +26,7 @@ networkx = "^3.3"
 #              --config-settings="--global-option=-IC:\Program Files\Graphviz\include" `
 #              --config-settings="--global-option=-LC:\Program Files\Graphviz\lib" `
 #              pygraphviz
+
 matplotlib = "^3.9.2"
 
 [tool.poetry.group.test.dependencies]

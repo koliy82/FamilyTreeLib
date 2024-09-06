@@ -20,4 +20,10 @@ class TreeLibTest(unittest.TestCase):
         tree = TreeLib(1)
         tree.build_tree(self.client.db.braks)
         formatted_tree = tree.tree.show(stdout=False, reverse=True)
-        self.assertEqual(formatted_tree, 'test 1\n├── test 3\n│   └── test 4\n└── test 2\n')
+        self.assertEqual(formatted_tree, 'test 1\n├── test 𝚖𝚘𝚛𝚊ᵃʳ\n└── test 3🌱\n    ├── test 5👈\n    │   ├── test 6🇺🇲\n    │   └── ?\n    │       └── test 8\n    └── ?\n')
+
+    def test_treelib_max_duplicate(self):
+        tree = TreeLib(5)
+        tree.build_tree(self.client.db.braks)
+        formatted_tree = tree.tree.show(stdout=False, reverse=True)
+        self.assertEqual(formatted_tree, 'test 5👈\n├── test 6🇺🇲\n└── ?\n    └── test 8\n')
