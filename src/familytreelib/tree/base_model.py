@@ -21,8 +21,6 @@ class BaseFamilyTree(ABC):
             setattr(self, key, value)
 
     def process_data(self, coll: Collection, max_duplicate, is_repeatable_map=None):
-        if is_repeatable_map is None:
-            is_repeatable_map = { self.user_id: 0 }
         pipeline = [
             {
                 '$match': {
@@ -62,17 +60,25 @@ class BaseFamilyTree(ABC):
                 if second_data:
                     self.second = User.from_mongo(second_data)
             if self.brak and self.brak.baby_user_id:
-                if self.brak.baby_user_id not in is_repeatable_map:
-                    is_duplicate = False
-                    is_repeatable_map[self.brak.baby_user_id] = 0
-                else:
-                    duplicate_count = is_repeatable_map[self.brak.baby_user_id]
-                    is_duplicate = duplicate_count >= max_duplicate
-                    is_repeatable_map[self.brak.baby_user_id] = duplicate_count+1
-                    print(f"duplicate [{self.brak.baby_user_id}]: {duplicate_count}/{max_duplicate} = {is_duplicate}")
+                if is_repeatable_map is None:
+                    is_repeatable_map = {self.brak.first_user_id: 0, self.brak.second_user_id: 0}
+                is_duplicate = self.is_duplicate_user(self.brak.baby_user_id, max_duplicate, is_repeatable_map)
                 if not is_duplicate:
                     self.next = self.__class__(self.brak.baby_user_id)
                     self.next.process_data(coll, max_duplicate, is_repeatable_map)
+
+    def is_duplicate_user(self, user_id, max_duplicate, is_repeatable_map):
+        if user_id not in is_repeatable_map:
+            is_duplicate = False
+            is_repeatable_map[self.brak.baby_user_id] = 0
+        else:
+            duplicate_count = is_repeatable_map[user_id]
+            is_duplicate = duplicate_count >= max_duplicate
+            is_repeatable_map[user_id] = duplicate_count + 1
+            print(f"duplicate [{user_id}]: {duplicate_count}/{max_duplicate} = {is_duplicate}")
+        return is_duplicate
+
+
 
     def root_data(self, unknown_string: str) -> Tuple[str, int]:
         if self.user_id == self.brak.first_user_id:

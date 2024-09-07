@@ -29,6 +29,9 @@ def mongomock_client():
         # simulate infinite loop
         dict(first_user_id=7, second_user_id=8, baby_user_id=5, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
         dict(first_user_id=9, second_user_id=10, baby_user_id=11, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=7493530812, second_user_id=1718294655, baby_user_id=879148335, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=879148335, second_user_id=1158926570, baby_user_id=7493530812, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+
     ]
     for user in user_data:
         user['_id'] = users.insert_one(user).inserted_id

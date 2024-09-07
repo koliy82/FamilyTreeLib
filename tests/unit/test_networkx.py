@@ -4,7 +4,7 @@ from familytreelib.tree.networkx_model import NetworkxLib
 from tests.mongo import mongomock_client
 
 
-class Ete3LibTest(unittest.TestCase):
+class NetworkxLibTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
