@@ -29,8 +29,12 @@ def mongomock_client():
         # simulate infinite loop
         dict(first_user_id=7, second_user_id=8, baby_user_id=5, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
         dict(first_user_id=9, second_user_id=10, baby_user_id=11, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        # simulate infinite loop
         dict(first_user_id=7493530812, second_user_id=1718294655, baby_user_id=879148335, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
-        dict(first_user_id=879148335, second_user_id=1158926570, baby_user_id=7493530812, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=879148335, second_user_id=1158926570, baby_user_id=1881940848, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=1881940848, second_user_id=1175557541, baby_user_id=1151862149, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=1151862149, second_user_id=311482332, baby_user_id=5098512008, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
+        dict(first_user_id=1925409254, second_user_id=5098512008, baby_user_id=311482332, create_date=d, baby_create_date=d, last_casino_play=d, last_grow_kid=d, last_hamster_update=d, score=0, tap_count=0, chat_id=c),
 
     ]
     for user in user_data:

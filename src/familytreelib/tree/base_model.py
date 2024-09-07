@@ -61,23 +61,39 @@ class BaseFamilyTree(ABC):
                     self.second = User.from_mongo(second_data)
             if self.brak and self.brak.baby_user_id:
                 if is_repeatable_map is None:
-                    is_repeatable_map = {self.brak.first_user_id: 0, self.brak.second_user_id: 0}
-                is_duplicate = self.is_duplicate_user(self.brak.baby_user_id, max_duplicate, is_repeatable_map)
+                    is_repeatable_map = {}
+                u_duplicate = False
+                if self.brak.first_user_id != self.brak.baby_user_id:
+                    u_duplicate = self.is_duplicate_user(self.brak.first_user_id, max_duplicate, is_repeatable_map)
+                if self.brak.second_user_id != self.brak.baby_user_id:
+                    u_duplicate = self.is_duplicate_user(self.brak.second_user_id, max_duplicate, is_repeatable_map)
+                b_duplicate = self.is_duplicate_user(self.brak.baby_user_id, max_duplicate, is_repeatable_map)
+                is_duplicate = u_duplicate or b_duplicate
                 if not is_duplicate:
                     self.next = self.__class__(self.brak.baby_user_id)
                     self.next.process_data(coll, max_duplicate, is_repeatable_map)
 
-    def is_duplicate_user(self, user_id, max_duplicate, is_repeatable_map):
-        if user_id not in is_repeatable_map:
-            is_duplicate = False
-            is_repeatable_map[self.brak.baby_user_id] = 0
-        else:
-            duplicate_count = is_repeatable_map[user_id]
-            is_duplicate = duplicate_count >= max_duplicate
-            is_repeatable_map[user_id] = duplicate_count + 1
-            print(f"duplicate [{user_id}]: {duplicate_count}/{max_duplicate} = {is_duplicate}")
-        return is_duplicate
+    # @staticmethod
+    # def is_duplicate_user(user_id, max_duplicate, is_repeatable_map):
+    #     if user_id not in is_repeatable_map:
+    #         is_duplicate = False
+    #         is_repeatable_map[user_id] = 0
+    #     else:
+    #         duplicate_count = is_repeatable_map[user_id]
+    #         is_duplicate = duplicate_count >= max_duplicate
+    #         is_repeatable_map[user_id] = duplicate_count + 1
+    #         print(f"duplicate [{user_id}]: {duplicate_count}/{max_duplicate} = {is_duplicate}")
+    #     return is_duplicate
 
+    @staticmethod
+    def is_duplicate_user(user_id, max_duplicate, is_repeatable_map):
+        if user_id not in is_repeatable_map:
+            is_repeatable_map[user_id] = 0
+            is_duplicate = False
+        else:
+            is_duplicate = is_repeatable_map[user_id] >= max_duplicate
+        print(f"Checking duplicate for user_id [{user_id}]: count = {is_repeatable_map[user_id]}/{max_duplicate} -> is_duplicate = {is_duplicate}")
+        return is_duplicate
 
 
     def root_data(self, unknown_string: str) -> Tuple[str, int]:

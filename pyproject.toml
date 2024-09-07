@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "familytreelib"
-version = "0.0.12"
+version = "0.0.14"
 description = ""
 authors = ["Koliy82 <sokol070804@mail.ru>"]
 license = "LICENSE"

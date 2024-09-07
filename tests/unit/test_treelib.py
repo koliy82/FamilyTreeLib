@@ -34,4 +34,4 @@ class TreeLibTest(unittest.TestCase):
         tree = TreeLib(7493530812)
         tree.build_tree(self.client.db.braks)
         formatted_tree = tree.tree.show(stdout=False, reverse=True)
-        self.assertEqual(formatted_tree, '?\n├── ?\n└── ?\n    └── ?\n')
+        self.assertEqual(formatted_tree, '?\n├── ?\n└── ?\n    ├── ?\n    └── ?\n        ├── ?\n        └── ?\n            ├── ?\n            └── ?\n                └── ?\n')
