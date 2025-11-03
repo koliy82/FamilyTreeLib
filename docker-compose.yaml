@@ -16,7 +16,7 @@ services:
     #  - type: bind
     #    source: G:\GitHub\FamilyTreeLib\poetry.lock
     #    target: /tests/poetry.lock
-     - type: bind
-       source: G:\GitHub\FamilyTreeLib\pyproject.toml
-       target: /tests/pyproject.toml
+    #  - type: bind
+    #    source: G:\GitHub\FamilyTreeLib\pyproject.toml
+    #    target: /tests/pyproject.toml
     command: sh -c "chmod 755 docker-setup.sh && ./docker-setup.sh"
