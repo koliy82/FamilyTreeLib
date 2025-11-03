@@ -1,0 +1,22 @@
+services:
+  api:
+    image: python:3.11.9-slim
+    restart: "no"
+    ports:
+      - "10000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - QT_DEBUG_PLUGINS=1
+      - QT_QPA_PLATFORM=offscreen
+    working_dir: /tests
+    volumes:
+     - type: bind
+       source: tests
+       target: /tests
+     - type: bind
+       source: G:\GitHub\FamilyTreeLib\poetry.lock
+       target: /tests/poetry.lock
+     - type: bind
+       source: G:\GitHub\FamilyTreeLib\pyproject.toml
+       target: /tests/pyproject.toml
+    command: sh -c "chmod 755 docker-setup.sh && ./docker-setup.sh"
