@@ -3,8 +3,6 @@ from typing import Optional, Annotated
 from bson import ObjectId
 from pydantic import BaseModel, Field, ConfigDict, BeforeValidator
 
-from familytreelib.pymongo.score import Score
-
 
 class User(BaseModel):
     OId: Annotated[str, BeforeValidator(str)] = Field(..., alias="_id")
@@ -13,7 +11,7 @@ class User(BaseModel):
     last_name: Optional[str] = None
     username: Optional[str] = None
     language_code: str
-    score: Score
+    score: int
     model_config = ConfigDict(
         arbitrary_types_allowed=True,
         json_encoders={ObjectId: str},
@@ -25,10 +23,7 @@ class User(BaseModel):
                 "last_name": "last_name",
                 "username": "username",
                 "language_code": "ru",
-                "score": {
-                    "mantissa":0,
-                    "exponent":0,
-                },
+                "score": 0,
             }
         },
     )

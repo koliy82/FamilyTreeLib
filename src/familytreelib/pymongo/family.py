@@ -4,8 +4,6 @@ from typing import Optional, Annotated
 from bson import ObjectId
 from pydantic import BaseModel, Field, ConfigDict, BeforeValidator
 
-from familytreelib.pymongo.score import Score
-
 
 class Family(BaseModel):
 
@@ -16,7 +14,7 @@ class Family(BaseModel):
     create_date: datetime
     baby_user_id: Optional[int] = None
     baby_create_date: Optional[datetime] = None
-    score: Score
+    score: int
     # last_casino_play: datetime
     # last_grow_kid: datetime
     # last_hamster_update: datetime
@@ -33,10 +31,7 @@ class Family(BaseModel):
                 "create_date": "1970-01-01T00:00:00",
                 "baby_user_id": 0,
                 "baby_create_date": "1970-01-01T00:00:00",
-                "score": {
-                    "mantissa":0,
-                    "exponent":0,
-                },
+                "score": 0,
                 # "last_casino_play": "1970-01-01T00:00:00",
                 # "last_grow_kid": "1970-01-01T00:00:00",
                 # "last_hamster_update": "1970-01-01T00:00:00",
